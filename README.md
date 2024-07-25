@@ -2,9 +2,7 @@
 
 In a world driven by data analytics, predictive analytics is a powerful tool. By leveraging historical and current data to forecast future outcomes, it can enhance decision-making, reduce costs, and improve customer experiences.
 
-## Project Overview
-
-This project aims to predict Cooling Load (Watts per m²) based on building parameters to enhance decision-making and energy efficiency. The goal is to develop a model that predicts Cooling Load within +/- 4 Watts per m² using RStudio and the R language.
+**Project Overview:** This project aims to predict Cooling Load (Watts per m²) based on building parameters to enhance decision-making and energy efficiency. The goal is to develop a model that predicts Cooling Load within +/- 4 Watts per m² using RStudio and the R language.
 
 ## Preliminary Analysis Conclusions:  
 
