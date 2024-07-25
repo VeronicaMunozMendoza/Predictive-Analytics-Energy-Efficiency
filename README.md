@@ -2,21 +2,20 @@
 
 In a world driven by data analytics, predictive analytics is a powerful tool. By leveraging historical and current data to forecast future outcomes, it can enhance decision-making, reduce costs, and improve customer experiences.
 
-This project aims to predict the Cooling Load (Watts per m²) based on building parameters. The Cooling Load indicates the heat energy needed to maintain a steady indoor temperature during high outside temperatures. My goal is to train a model that predicts this load within +/- 4 Watts per m².
+## Project Overview
 
-I will use RStudio and the R language for this project. RStudio offers comprehensive packages for data processing, statistical analysis, and visualization. R's flexibility and extensive functionality allow for effective complex data analyses and predictive model building. By utilizing these tools, I aim to develop an accurate Cooling Load prediction model.
+This project aims to predict Cooling Load (Watts per m²) based on building parameters to enhance decision-making and energy efficiency. The goal is to develop a model that predicts Cooling Load within +/- 4 Watts per m² using RStudio and the R language.
 
-I have two CSV files: CA_test_data.csv and CA_rain_data.csv. My first step is to perform an Exploratory Data Analysis (EDA) to understand the data. The insights gained from the EDA will guide me in preparing and transforming the data for my model.
+## Preliminary Analysis Conclusions:  
 
-## PRELIMINARY ANALYSIS CONCLUSIONS: 
+The dataset consists of 537 observations and 9 numeric/integer variables, with no missing values. This completeness supports a solid analysis base. Key variables include:
 
-Based on the information gathered from the preliminary analysis, the dataset is made of 537 observations distributed among 9 variables, all the variables are numeric or integer data types. On the other side, we can confidently say that our data is complete as it does not contain missing or NA values. This is very beneficial at a later stage during the project as missing data can bring into play bias which can lead to skewed results or inaccurate conclusions.   
+- Overall_Height: Strong positive correlation (0.898)
+- Roof_Area: Strong negative correlation (-0.865)
 
-The dataset is complete, making us confident that the analysis base is solid, and the results have the support of the general picture of the data. The following step will be performing an in-depth exploratory data analysis (EDA) to discover how the patterns are formed and their correlation. This lays the foundation for the data modelling section which will help to predict the Cooling Load. 
+Multicollinearity exists between variables like Relative_Compactness and Roof_Area, which will be addressed with Ridge Regression.
 
-It is important to always be vigilant of any discrepancies that might occur or any unusual findings as we want to create a robust model that is reliable, thus this is one of the most important phases when creating a predictive analytics model. 
-
-## FURTHER EXPLORATORY ANALYSIS (EDA)
+## Exploratory Data Analysis (EDA)
 
 After identifying the data types in the training dataset, I took a deeper look at the data. My methodology involves using summary statistics, visualizations, and exploratory analysis methods to identify trends, anomalies, and relationships, determining which variables will best fit the model. 
 
@@ -65,11 +64,11 @@ For a more in-depth analysis beyond EDA, I will use regression analysis, given t
 
 ## Linear Regression: 
 
-I have created two linear regression models, one with all the building parameters and a second one only with 6 parameters. After training the model I have monitor how each of them perform in comparisno with the other, the conclusions were: 
+Two linear regression models were compared:
 
-- The adjusted R-squared of the first model is 0.8855, whereas the second model achieves 0.8857. Model 2 has a slightly higher adjusted R-squared.
-- The residual standard error for model 1 is 3.291, marginally better than the previous model.
-- I will use the model with 6 variables as it has a slightly better adjusted R-squared and helps avoid overfitting.
+- Model 1: All parameters, adjusted R-squared = 0.8855, residual standard error = 3.291
+- Model 2: 6 parameters, adjusted R-squared = 0.8857
+- Model 2 is preferred for slightly better performance and reduced risk of overfitting.
 
 ### R code and output: 
 
@@ -77,10 +76,9 @@ I have created two linear regression models, one with all the building parameter
 
 ## Modelling & Evaluation
 
+The next phase involves data partitioning to implement cross-validation and ridge regression. I ensured data leakage prevention and reproducibility by setting random training indices without replacement. The data was partitioned into 70% training and 30% validation sets. Ridge Regression (alpha = 0) was used, with RMSE for Model B at 3.39 (Watts per m²) and the test set at 3.07 (Watts per m²). The model meets the +/- 4 Watts per m² criterion.
 
-The next phase involves data partitioning to implement cross-validation and ridge regression. I ensured data leakage prevention and reproducibility by setting random training indices without replacement. I selected 70% of the data for training and 30% for validation and set up cross-validation for Ridge Regression (alpha = 0). Additionally, I created a second model (Model B) to compare RMSE and determine the most suitable model for the test set.
-
-This are the results: 
+This were the results: 
 
 <img width="383" alt="image" src="https://github.com/user-attachments/assets/f6462879-22d1-4f58-b51d-f60fc5611e67">
 
